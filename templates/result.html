@@ -4,11 +4,25 @@
     </head>
     <body>
       <h1>Submitted Info</h1>
-      <h3>You are winner</h3>
 			<p>Name: {{named}}</p>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+        <h1>{{message}}</h1>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
 			<p>Dojo Location: {{dojo}}</p>
 			<p>Favorite Language: {{languaged}}</p>
 			<p>Comment: {{commented}}</p>
+          {% with errors = get_flashed_messages(category_filter=["commentError"]) %}
+            {% if messages %}
+          {% for message in messages %}
+                <h2>{{message}}</h2>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
       </form>
     </body>
 </html>
